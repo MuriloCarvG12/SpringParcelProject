@@ -16,6 +16,12 @@ public class service
 {
     private final List<Parcel> parcelsList = new ArrayList<>();
 
+    private final ShippingBean ShippingMethods;
+
+    public service(ShippingBean ShippingMethods){
+        this.ShippingMethods = ShippingMethods;
+    }
+
     public
 
     @PostMapping("/newParcel")
@@ -24,22 +30,22 @@ public class service
         switch (Body.type())
         {
             case "potion":
-                Parcel PotionParcel = new PotionParcel(Body.weight(), Body.type(), Body.fragile(), Body.deliveryZone());
+                Parcel PotionParcel = new PotionParcel(Body.weight(), Body.type(), Body.fragile(), Body.deliveryZone(), Body.price());
                 this.parcelsList.add(PotionParcel);
                 return PotionParcel.toString();
 
             case "dragonEgg":
-                Parcel DragonEggParcel = new DragonEggParcel(Body.weight(), Body.type(), Body.deliveryZone());
+                Parcel DragonEggParcel = new DragonEggParcel(Body.weight(), Body.type(), Body.deliveryZone(), Body.price());
                 this.parcelsList.add(DragonEggParcel);
                 return DragonEggParcel.toString();
 
             case "scroll":
-                Parcel ScrollParcel = new EnchantedScroll(Body.type(), Body.fragile(), Body.deliveryZone());
+                Parcel ScrollParcel = new EnchantedScroll(Body.type(), Body.fragile(), Body.deliveryZone(), Body.price());
                 this.parcelsList.add(ScrollParcel);
                 return ScrollParcel.toString();
 
             case "artifact":
-                Parcel ArtifactParcel = new MagicArtifact(Body.weight(), Body.type(), Body.deliveryZone());
+                Parcel ArtifactParcel = new MagicArtifact(Body.weight(), Body.type(), Body.deliveryZone(), Body.price());
                 this.parcelsList.add(ArtifactParcel);
                 return ArtifactParcel.toString();
 
@@ -75,4 +81,16 @@ public class service
         return result.toString();
 
     }
+
+    @PostMapping("/shippingMethod")
+    public String shippingMethod(
+            @RequestBody shippingRequest Body)
+    {
+        Parcel parcelFound = parcelsList.get(Body.parcelIndex());
+
+        double totalShipping = ShippingMethods.CalculateFee(parcelFound, Body.expressShipping());
+
+        return "the total shipping is " + totalShipping;
+    }
+
 }

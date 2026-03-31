@@ -11,6 +11,7 @@ public class controller
 {
    private final service ServiceBean;
 
+
    public controller(service ServiceBean){
        this.ServiceBean = ServiceBean;
    }
@@ -32,5 +33,12 @@ public class controller
             @RequestParam(required = false) boolean fragile)
     {
         return ServiceBean.dispatchParcel(weight, zone, fragile);
+    }
+
+    @PostMapping("/shippingMethod")
+    public String shippingMethod(
+            @RequestBody shippingRequest Body)
+    {
+        return ServiceBean.shippingMethod(Body);
     }
 }

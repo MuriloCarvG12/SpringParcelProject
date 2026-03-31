@@ -5,5 +5,6 @@ public record ParcelRequest(
         double weight,
         String parcelType,
         boolean fragile,
-        String deliveryZone
+        String deliveryZone,
+        double price
 ) {}

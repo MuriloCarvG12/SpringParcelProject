@@ -5,6 +5,7 @@ interface Parcel
     double getWeight();
     boolean isFragile();
     String getDeliveryZone();
+     double getPrice();
 }
 
 class PotionParcel implements Parcel
@@ -14,13 +15,15 @@ class PotionParcel implements Parcel
     String type;
     boolean fragile;
     String deliveryZone;
+    double price;
 
     public
-     PotionParcel(double weight, String type, Boolean fragile, String deliveryZone) {
+     PotionParcel(double weight, String type, Boolean fragile, String deliveryZone, double price) {
         this.weight = weight;
         this.type = type;
         this.fragile = fragile;
         this.deliveryZone = deliveryZone;
+        this.price = price;
     }
 
     @Override
@@ -62,11 +65,16 @@ class PotionParcel implements Parcel
         return this.fragile;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "weight=" + weight +
                 ", type='" + type + '\'' +
                 ", fragile=" + fragile +
+                ", price=" + price +
                 ", deliveryZone='" + deliveryZone + '\'';
     }
 }
@@ -78,13 +86,15 @@ class DragonEggParcel implements Parcel
     String type;
     boolean fragile = true;
     String deliveryZone;
+    double price;
 
     public
 
-     DragonEggParcel(double weight, String type, String deliveryZone) {
+     DragonEggParcel(double weight, String type, String deliveryZone, double price) {
         this.weight = weight;
         this.type = type;
         this.deliveryZone = deliveryZone;
+        this.price = price;
     }
 
     @Override
@@ -122,12 +132,17 @@ class DragonEggParcel implements Parcel
         return this.fragile;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return
                 "weight=" + weight +
                 ", type='" + type + '\'' +
                 ", fragile=" + fragile +
+                ", price=" + price +
                 ", deliveryZone='" + deliveryZone + '\'';
 
     }
@@ -140,13 +155,15 @@ class EnchantedScroll implements Parcel
     String type;
     boolean fragile;
     String deliveryZone;
+    double price;
 
     public
 
-     EnchantedScroll(String type, Boolean fragile, String deliveryZone) {
+     EnchantedScroll(String type, Boolean fragile, String deliveryZone, double price) {
         this.type = type;
         this.fragile = fragile;
         this.deliveryZone = deliveryZone;
+        this.price = price;
     }
 
     @Override
@@ -184,11 +201,16 @@ class EnchantedScroll implements Parcel
         return this.fragile;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "weight=" + weight +
                 ", type='" + type + '\'' +
                 ", fragile=" + fragile +
+                ", price=" + price +
                 ", deliveryZone='" + deliveryZone + '\'';
 
     }
@@ -201,13 +223,15 @@ class MagicArtifact implements Parcel
     String type;
     boolean fragile = true;
     String deliveryZone;
+    double price;
 
     public
 
-    MagicArtifact(double weight, String type, String deliveryZone) {
+    MagicArtifact(double weight, String type, String deliveryZone, double price) {
         this.weight = weight;
         this.type = type;
         this.deliveryZone = deliveryZone;
+        this.price = price;
     }
 
     @Override
@@ -245,11 +269,16 @@ class MagicArtifact implements Parcel
         return this.fragile;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "weight=" + weight +
                 ", type='" + type + '\'' +
                 ", fragile=" + fragile +
+                ", price=" + price +
                 ", deliveryZone='" + deliveryZone + '\'';
     }
 }
